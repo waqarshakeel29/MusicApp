@@ -14,50 +14,83 @@ class MyApp extends StatelessWidget {
           appBar: AppBar(
             bottom: TabBar(
               tabs: [
-                Tab(text: "ALBUMS",),
-                Tab(text: "ARTISTS",),
-                Tab(text: "PODCASTS",),
+                Tab(
+                  text: "ALBUMS",
+                ),
+                Tab(
+                  text: "ARTISTS",
+                ),
+                Tab(
+                  text: "PODCASTS",
+                ),
               ],
             ),
-            title: Text('Browse',style: TextStyle(fontSize: 30),),
+            title: Text(
+              'Browse',
+              style: TextStyle(fontSize: 30),
+            ),
           ),
+          backgroundColor: Colors.white,
           body: TabBarView(
             children: [
-              Column(
-                mainAxisSize: MainAxisSize.min,
-                children: <Widget>[
-                  Expanded(
-                    child: ListView.builder(
-
-                      scrollDirection: Axis.horizontal,
-                      itemCount: 15,
-                      itemBuilder: (BuildContext context, int index) => Container(
-                        height: 0,
-                        width: 150,
-                        child: Card(
-                          elevation: 10,
-                          child: Center(child: Text('Album')),
+              Padding(
+                padding: const EdgeInsets.all(14.0),
+                child: Column(
+                  children: <Widget>[
+                    Container(
+                      height: 200,
+                      child: ListView.builder(
+                        scrollDirection: Axis.horizontal,
+                        itemCount: 15,
+                        itemBuilder: (BuildContext context, int index) => Container(
+                          height: 0,
+                          width: 150,
+                          child: Card(
+                            child: Padding(
+                              padding: const EdgeInsets.all(8.0),
+                              child: Stack(
+                                children: <Widget>[
+                                  Container(child: Icon(Icons.favorite),alignment: Alignment.center,),
+                                  Container(
+                                    alignment: Alignment.bottomLeft,
+                                    child: Container(height: 50,width: 50,color: Colors.red,),
+                                  )
+                                ],
+                              ),
+                            ),
+                          ),
                         ),
                       ),
                     ),
-                  ),
-                  Text(
-                    'Demo Headline 2',
-                    style: TextStyle(fontSize: 18),
-                  ),
-                  Expanded(
-                    child: ListView.builder(
-                      shrinkWrap: true,
-                      itemBuilder: (ctx,int){
-                        return Card(
-                          child: ListTile(
-                              title: Text('Motivation $int'),
-                              subtitle: Text('this is a description of the motivation')),
-                        );
-                      },
+                    Align(child: Text("Playlist",style: TextStyle(fontSize: 30),textAlign: TextAlign.left,),alignment: Alignment.centerLeft,),
+                    Expanded(
+                      child: ListView.builder(
+                        itemCount: 10,
+                        itemBuilder: (ctx, int) {
+                          return Column(
+                            children: <Widget>[
+                              Row(
+                                mainAxisSize: MainAxisSize.max,
+                                children: <Widget>[
+                                  Icon(Icons.account_balance),
+                                  Column(
+                                    children: <Widget>[
+                                      Text("Hello"),
+                                      Text("sub"),
+                                    ],
+                                  ),
+                                  Text("4:02"),
+                                  Icon(Icons.favorite_border),
+                                ],
+                              ),
+                              Divider(),
+                            ],
+                          ) ;
+                        },
+                      ),
                     ),
-                  ),
-                ],
+                  ],
+                ),
               ),
               Icon(Icons.directions_transit),
               Icon(Icons.directions_bike),
