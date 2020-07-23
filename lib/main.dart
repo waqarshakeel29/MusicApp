@@ -37,7 +37,6 @@ class MainTabState extends State<MainTabView>{
 
   @override
   Widget build(BuildContext context) {
-
     return DefaultTabController(
       length: 3,
       child: Scaffold(
@@ -147,8 +146,6 @@ class MainTabState extends State<MainTabView>{
           var c = songs.length;
           print("This is -> $c");
     }
-
-
 
     });
   }
