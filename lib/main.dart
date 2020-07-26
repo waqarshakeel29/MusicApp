@@ -12,9 +12,6 @@ import 'audio_logic.dart';
 void main() {
   runApp(MyApp());
 }
-//void main() {
-//  runApp(MaterialApp(home: ExampleApp()));
-//}
 
 
 class MyApp extends StatelessWidget {
