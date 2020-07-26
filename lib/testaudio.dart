@@ -8,20 +8,22 @@ import 'package:music_app/player_vidget.dart';
 import 'package:provider/provider.dart';
 import 'package:flutter/src/foundation/constants.dart';
 
-void main() {
-  runApp(MaterialApp(home: ExampleApp()));
-}
+//void main() {
+//  runApp(MaterialApp(home: ExampleApp()));
+//}
 
 class ExampleApp extends StatefulWidget {
+  ExampleApp({@required this.text});
+  String text = null;
   @override
-  _ExampleAppState createState() => _ExampleAppState();
+  _ExampleAppState createState() => _ExampleAppState(localFilePath: text);
 }
 
 class _ExampleAppState extends State<ExampleApp> {
-
+  _ExampleAppState({@required this.localFilePath});
   AudioCache audioCache = AudioCache();
   AudioPlayer advancedPlayer = AudioPlayer();
-  String localFilePath="/storage/emulated/0/Ahsan_Songs/Yeh Dosti_320(MyMp3Song).mp3";
+  String localFilePath= null;
 
   @override
   void initState() {
@@ -39,11 +41,11 @@ class _ExampleAppState extends State<ExampleApp> {
     }
   }
 
-  Future _loadFile() {
-    setState(() {
-      localFilePath = "/storage/emulated/0/Ahsan_Songs/Yeh Dosti_320(MyMp3Song).mp3";
-    });
-  }
+//  Future _loadFile() {
+//    setState(() {
+//      localFilePath = "/storage/emulated/0/Ahsan_Songs/Yeh Dosti_320(MyMp3Song).mp3";
+//    });
+//  }
 
   Widget localFile() {
     return _Tab(children: [

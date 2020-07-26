@@ -9,12 +9,12 @@ import 'package:flutter_audio_query/flutter_audio_query.dart';
 
 import 'audio_logic.dart';
 
-//void main() {
-//  runApp(MyApp());
-//}
 void main() {
-  runApp(MaterialApp(home: ExampleApp()));
+  runApp(MyApp());
 }
+//void main() {
+//  runApp(MaterialApp(home: ExampleApp()));
+//}
 
 
 class MyApp extends StatelessWidget {
@@ -109,39 +109,48 @@ class MainTabState extends State<MainTabView>{
                     ),
                   ),
                 ),
-                Align(child: Text("Playlist",style: TextStyle(fontSize: 30),textAlign: TextAlign.left,),alignment: Alignment.centerLeft,),
+                Padding(
+                  padding: const EdgeInsets.fromLTRB(15, 0, 0, 20),
+                  child: Align(child: Text("Playlist",style: TextStyle(fontSize: 30),textAlign: TextAlign.left,),alignment: Alignment.centerLeft,),
+                ),
                 Expanded(
-                  child: Padding(
-                    padding: const EdgeInsets.fromLTRB(20.0,0,20,0),
-                    child: ListView.builder(
-                      itemCount: songs.length,
-                      itemBuilder: (ctx, int) {
-                        return Column(
+                  child: ListView.builder(
+                    itemCount: songs.length,
+                    itemBuilder: (ctx, inti) {
+                      return Padding(
+                        padding: const EdgeInsets.fromLTRB(15, 5, 15, 5),
+                        child: Column(
                           children: <Widget>[
                             Row(
                               children: <Widget>[
                                 Icon(Icons.account_balance),
-                                Spacer(flex: 1,),
                                 Container(
-                                  child: Column(
-                                    children: <Widget>[
-                                      Container(child: Text(songs[int].displayName,style: TextStyle(fontSize: 18),maxLines: 1),alignment: Alignment.centerLeft,),
-//                                      Container(child: Text("songs[int].albumArtwork",style: TextStyle(fontSize: 15,),maxLines: 1,),alignment: Alignment.centerLeft,),
-                                    ],
+                                  child: Expanded(
+                                    child: GestureDetector(
+                                      onTap: (){
+                                        Navigator.push(context, MaterialPageRoute(builder: (context) => ExampleApp(text: songs[inti].filePath,)));
+                                      },
+                                      child: Column(
+                                        children: <Widget>[
+                                          Container(child: Text(songs[inti].displayName,style: TextStyle(fontSize: 18),maxLines: 1),alignment: Alignment.centerLeft,),
+                                      Container(child: Text(songs[inti].album,style: TextStyle(fontSize: 15,),maxLines: 1,),alignment: Alignment.centerLeft,),
+                                        ],
+                                      ),
+                                    ),
                                   ),
-                                  width: 80,
                                 ),
-                                Spacer(flex: 3,),
-                                Text("4:02"),
-                                Spacer(),
+                                Padding(
+                                  padding: const EdgeInsets.all(8.0),
+                                  child: Text(songs[inti].duration),
+                                ),
                                 Icon(Icons.favorite_border),
                               ],
                             ),
                             Divider(),
                           ],
-                        ) ;
-                      },
-                    ),
+                        ),
+                      ) ;
+                    },
                   ),
                 ),
               ],
